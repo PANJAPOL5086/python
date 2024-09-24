@@ -1,0 +1,52 @@
+def create_mine_field(mine_positions, field_size=10): 
+    field = [[0] * field_size for _ in range(field_size)]
+    
+    for mine in mine_positions:
+        row, col = mine
+        field[row][col] = 'X'  # Mark the mine location with 'X'
+        # ตำแหน่งของลูกระเบิดในกริดจะถูกทำเครื่องหมายด้วย 'X'
+
+    for mine in mine_positions:
+        row, col = mine
+        for r in range(field_size):
+            for c in range(field_size):
+                distance = max(abs(row - r), abs(col - c))
+                # คำนวณระยะห่างจากตำแหน่งลูกระเบิดไปยังตำแหน่งอื่น ๆ ในกริด
+                
+                if distance == 0:
+                    continue
+                # ถ้าระยะห่างเป็น 0 (คือที่เดียวกัน) จะไม่ทำอะไร
+
+                # Update the distance only if the current cell is empty or has a larger distance
+                if field[r][c] == 0 or (isinstance(field[r][c], int) and field[r][c] > distance):
+                    field[r][c] = distance
+                # อัปเดตค่าในกริดเฉพาะถ้าตำแหน่งนั้นว่างเปล่าหรือมีระยะทางที่มากกว่า
+
+    return field
+
+def display_field(field):
+    for row in field:
+        print(" ".join(str(cell) for cell in row))
+        # แสดงผลกริดในรูปแบบของ string โดยใช้ช่องว่างคั่นระหว่างเซลล์
+
+def main():
+    num_mines = int(input("Enter Number of Mines (1-5): "))
+    
+    mine_positions = []
+    for i in range(num_mines):
+        position = input(f"Enter location of Mine {i + 1} [Row,Col]: ").strip('[]')
+        row, col = map(int, position.split(','))  # แยกโดยใช้ ',' และแปลงเป็น int
+        
+        # ปรับให้เป็นช่วง (1-10)
+        if row < 1 or row > 10 or col < 1 or col > 10:
+            print(f"Error: Mine position ({row},{col}) is out of bounds. Please use values from 1 to 10.")
+            return
+        # ตรวจสอบว่าตำแหน่งที่ป้อนอยู่ในช่วงที่ถูกต้อง (1-10)
+        
+        mine_positions.append((row - 1, col - 1))  # แปลงให้เป็น (0-9)
+        # แปลงตำแหน่งที่ป้อนให้เป็นค่าที่ใช้ในกริด (0-9)
+
+    mine_field = create_mine_field(mine_positions)
+    display_field(mine_field)
+
+main()
