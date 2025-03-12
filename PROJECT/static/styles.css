@@ -1,0 +1,107 @@
+:root {
+    --primary-color: #FF5733;
+    --primary-hover: #e04a21; 
+    --success-color: #FF8C00; 
+    --danger-color: #f44336;
+    --danger-hover: #d32f2f;
+    --text-color: #333;
+    --bg-color: #fff7e6;
+    --header-bg-color: #FF5733; 
+    --button-radius: 5px; 
+    --button-padding: 10px 20px; 
+    --table-border-color: #f1c2a6; 
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    padding-bottom: 60px; 
+}
+
+header {
+    background-color: var(--header-bg-color);
+    color: white;
+    text-align: center;
+    padding: 15px;
+    font-size: 1.5em;
+}
+
+table {
+    width: 100%;
+    margin: 20px 0;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--table-border-color);
+}
+
+th {
+    background-color: var(--success-color);
+    color: white;
+    font-weight: bold;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+button {
+    background-color: var(--primary-color);
+    color: white;
+    padding: var(--button-padding);
+    border: none;
+    border-radius: var(--button-radius);
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 1.1em;
+}
+
+button:hover {
+    background-color: var(--primary-hover);
+}
+
+button.go-back {
+    background-color: var(--danger-color);
+    margin-top: 20px;
+}
+
+button.go-back:hover {
+    background-color: var(--danger-hover);
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    background-color: var(--header-bg-color);
+    color: white;
+    padding: 15px;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    font-size: 1.1em;
+}
+
+h2 {
+    color: var(--success-color);
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+main {
+    padding: 20px;
+}
